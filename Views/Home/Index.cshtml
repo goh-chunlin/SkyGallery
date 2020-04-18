@@ -1,0 +1,52 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container gallery-container">
+
+    <h1>My Sky Journey Photos</h1>
+
+    <p class="page-description text-center">
+        Recently, I am playing <strong>Sky: Children of the Light</strong> a game which is just introduced to the 
+        Android platform. I am in love with this game because of its fantastic soundtrack, challenging gameplay, 
+        interesting story, and most importantly, its simplistic yet absolutely beautiful art style.
+    </p>
+
+    <p class="page-description text-center">
+        Here are the "photos" of the beautiful scenes that I visited alone or with my friends. So even with current
+        Covid-19 outbreak, I'm glad that I can still meet new friends and have a great (virtual) journey with them. =D
+    </p>
+    
+    <div class="tz-gallery">
+
+        <div class="row">
+
+            @{ int counter = 0; }
+            @foreach(string imageUrl in Model)
+            {
+                string classes = "col-sm-6 col-md-4";
+                if (counter > 0 && counter % 3 == 0 && counter % 6 != 0 && counter % 9 != 0)
+                {
+                    classes = "col-sm-12 col-md-8";
+                }
+                <div class="@classes">
+                    <a class="lightbox" href="@imageUrl">
+                        <img src="@imageUrl" alt="">
+                    </a>
+                </div>
+
+                counter++;
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+<script>
+    baguetteBox.run('.tz-gallery');
+</script>
