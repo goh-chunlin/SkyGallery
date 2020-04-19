@@ -35,7 +35,10 @@ namespace sky_gallery.Controllers
             CloudBlobContainer cloudBlobContainer = blobclient.GetContainerReference("skyscreenshots");
             await cloudBlobContainer.CreateIfNotExistsAsync();
 
-            return View(await ListBlobsFlatListingAsync(cloudBlobContainer, null));
+            var imageUrls = await ListBlobsFlatListingAsync(cloudBlobContainer, null);
+            imageUrls.Reverse();
+
+            return View(imageUrls);
         }
 
         public IActionResult Privacy()
